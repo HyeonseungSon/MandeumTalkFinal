@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebViewClient
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.rud.mandeumtalk.R
 import com.rud.mandeumtalk.databinding.FragmentContactusBinding
-
+import kotlinx.android.synthetic.main.fragment_contactus.*
 
 class ContactUsFragment : Fragment() {
 
@@ -17,18 +18,27 @@ class ContactUsFragment : Fragment() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
 	}
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) : View? {
 
 		binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contactus, container, false)
 
+
+//		// Web View
+//		binding.webView.apply {
+//			webViewClient = WebViewClient()
+//			settings.javaScriptEnabled = true
+//		}
+//
+//		webView.loadUrl("http://xn--ry1bx6g.kr/contact.php")
+
+
 		binding.homeIcon.setOnClickListener {
-			it.findNavController().navigate(R.id.action_boardFragment_to_homeFragment)
+			it.findNavController().navigate(R.id.action_boardFragment_to_guideFragment)
 		}
 		binding.homeText.setOnClickListener {
-			it.findNavController().navigate(R.id.action_boardFragment_to_homeFragment)
+			it.findNavController().navigate(R.id.action_boardFragment_to_guideFragment)
 		}
 
 		binding.portfolioIcon.setOnClickListener {
@@ -39,10 +49,10 @@ class ContactUsFragment : Fragment() {
 		}
 
 		binding.boardIcon.setOnClickListener {
-			it.findNavController().navigate(R.id.action_boardFragment_to_guideFragment)
+			it.findNavController().navigate(R.id.action_boardFragment_to_homeFragment)
 		}
 		binding.boardText.setOnClickListener {
-			it.findNavController().navigate(R.id.action_boardFragment_to_guideFragment)
+			it.findNavController().navigate(R.id.action_boardFragment_to_homeFragment)
 		}
 
 		binding.contactUsIcon.setOnClickListener {

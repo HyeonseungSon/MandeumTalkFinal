@@ -16,6 +16,7 @@ import com.rud.mandeumtalk.board.BoardAdapter
 import com.rud.mandeumtalk.board.BoardModel
 import com.rud.mandeumtalk.board.BoardWriteActivity
 import com.rud.mandeumtalk.board.OnBoardItemClickListener
+import com.rud.mandeumtalk.contentsList.ContentsListActivity
 import com.rud.mandeumtalk.databinding.FragmentBoardBinding
 
 
@@ -25,7 +26,6 @@ class BoardFragment : Fragment() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
 	}
 
 	override fun onCreateView(
@@ -33,45 +33,54 @@ class BoardFragment : Fragment() {
 
 		binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board, container, false)
 
-		/////////// Start of Recycler View Area ///////////
-		val layoutManager = LinearLayoutManager (activity, LinearLayoutManager.VERTICAL, false)
 
-		binding.boardRecyclerView.layoutManager = layoutManager
-
-		val adapter = BoardAdapter()
-
-		adapter.items.add(BoardModel("애국가 1절", "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세"))
-		adapter.items.add(BoardModel("애국가 2절", "남산 위에 저 소나무, 철갑을 두른 듯 바람서리 불변함은 우리 기상일세"))
-		adapter.items.add(BoardModel("애국가 3절", "가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세"))
-		adapter.items.add(BoardModel("애국가 4절", "이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세"))
-
-		binding.boardRecyclerView.adapter = adapter
-
-		adapter.listener = object : OnBoardItemClickListener {
-
-			override fun onItemClick(holder: BoardAdapter.ViewHolder?, view: View?, position: Int) {
-
-				val title = view?.findViewById<TextView>(R.id.input1)?.text
-				val contents = view?.findViewById<TextView>(R.id.input2)?.text
-
-				Toast.makeText(activity, "Item Click $position\nTitle : $title\nContents : $contents", Toast.LENGTH_SHORT).show()
-
-			}
-		}
-		/////////// End of Recycler View Area ///////////
-
-		// Board Write Button
-		binding.boardWriteButton.setOnClickListener {
-			val intent = Intent (activity, BoardWriteActivity::class.java)
+		binding.educationIcon.setOnClickListener {
+			val intent = Intent(context, ContentsListActivity::class.java)
+			intent.putExtra("category", "Education")
 			startActivity(intent)
+		}
+		binding.educationText.setOnClickListener {
+			val intent = Intent(context, ContentsListActivity::class.java)
+			intent.putExtra("category", "Education")
+			startActivity(intent)
+		}
+
+		binding.cookingIcon.setOnClickListener {
+			val intent = Intent(context, ContentsListActivity::class.java)
+			intent.putExtra("category", "Cooking")
+			startActivity(intent)
+		}
+		binding.cookingText.setOnClickListener {
+			val intent = Intent(context, ContentsListActivity::class.java)
+			intent.putExtra("category", "Cooking")
+			startActivity(intent)
+		}
+
+		binding.forestIcon.setOnClickListener {
+			Toast.makeText(context, "Forest Tap is not Ready", Toast.LENGTH_SHORT).show()
+		}
+		binding.forestText.setOnClickListener {
+			Toast.makeText(context, "Forest Tap is not Ready", Toast.LENGTH_SHORT).show()
+		}
+		binding.campingIcon.setOnClickListener {
+			Toast.makeText(context, "Camping Tap is not Ready", Toast.LENGTH_SHORT).show()
+		}
+		binding.campingText.setOnClickListener {
+			Toast.makeText(context, "Camping Tap is not Ready", Toast.LENGTH_SHORT).show()
+		}
+		binding.caravanIcon.setOnClickListener {
+			Toast.makeText(context, "Caravan Tap is not Ready", Toast.LENGTH_SHORT).show()
+		}
+		binding.caravanText.setOnClickListener {
+			Toast.makeText(context, "Caravan Tap is not Ready", Toast.LENGTH_SHORT).show()
 		}
 
 
 		binding.homeIcon.setOnClickListener {
-			it.findNavController().navigate(R.id.action_guideFragment_to_homeFragment)
+			it.findNavController().navigate(R.id.action_boardFragment_self)
 		}
 		binding.homeText.setOnClickListener {
-			it.findNavController().navigate(R.id.action_guideFragment_to_homeFragment)
+			it.findNavController().navigate(R.id.action_boardFragment_self)
 		}
 
 		binding.portfolioIcon.setOnClickListener {
@@ -82,10 +91,10 @@ class BoardFragment : Fragment() {
 		}
 
 		binding.boardIcon.setOnClickListener {
-			it.findNavController().navigate(R.id.action_guideFragment_self)
+			it.findNavController().navigate(R.id.action_guideFragment_to_homeFragment)
 		}
 		binding.boardText.setOnClickListener {
-			it.findNavController().navigate(R.id.action_guideFragment_self)
+			it.findNavController().navigate(R.id.action_guideFragment_to_homeFragment)
 		}
 
 		binding.contactUsIcon.setOnClickListener {

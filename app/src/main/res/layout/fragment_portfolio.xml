@@ -11,13 +11,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/portfoliowebpage"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
             <LinearLayout
                 android:id="@+id/linearLayout7"
@@ -99,10 +101,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@color/white"
+                android:weightSum="5"
                 android:id="@+id/linearLayout8"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:background="@color/mainIvory"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent">
 
@@ -111,55 +114,50 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/nanumgothicbold"
                     android:gravity="center"
-                    android:text="홈"
+                    android:text="Infomation"
                     android:textColor="@color/mainPink"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/portfolioText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/nanumgothicbold"
                     android:gravity="center"
-                    android:text="포트폴리오"
-                    android:textColor="@color/mainSkyBlue"
-                    android:textSize="15sp" />
+                    android:text="Portfolio"
+                    android:textColor="@color/mainPink"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/boardText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/nanumgothicbold"
                     android:gravity="center"
-                    android:text="게시판"
-                    android:textColor="@color/mainPink"
-                    android:textSize="15sp" />
+                    android:text="Board"
+                    android:textColor="@color/mainSkyBlue"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/contactUsText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/nanumgothicbold"
                     android:gravity="center"
-                    android:text="문의"
+                    android:text="Contact Us"
                     android:textColor="@color/mainPink"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/accountText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/nanumgothicbold"
                     android:gravity="center"
-                    android:text="개인 설정"
+                    android:text="Account"
                     android:textColor="@color/mainPink"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

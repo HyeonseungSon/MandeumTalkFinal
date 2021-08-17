@@ -2,8 +2,11 @@ package com.rud.mandeumtalk
 
 import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
@@ -19,27 +22,35 @@ import com.rud.mandeumtalk.auth.IntroActivity
 import com.rud.mandeumtalk.board.BoardActivity
 import com.rud.mandeumtalk.databinding.ActivityJoinBinding
 import kotlinx.android.synthetic.main.activity_main.*
+import java.security.MessageDigest
 
 class MainActivity : AppCompatActivity() {
 
 	private lateinit var auth: FirebaseAuth
 
+	var backKeyPressedTime : Long = 0
 	override fun onCreate(savedInstanceState: Bundle?) {
 
 		auth = Firebase.auth
 
-	    super.onCreate(savedInstanceState)
+		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
 
+	}
 
-//		findViewById<Button>(R.id.logoutBtn).setOnClickListener {
-//
-//			auth.signOut()
-//
-//			val intent = Intent(this, IntroActivity::class.java)
-//			intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//			startActivity(intent)
-//		}
-
+	override fun onBackPressed() {
+			if (System.currentTimeMillis() > backKeyPressedTime + 2500) {
+				backKeyPressedTime = System.currentTimeMillis();
+				Toast.makeText(this, "종료하실려면 더블클릭" ,Toast.LENGTH_LONG).show()
+				return;
+			}
+			if (System.currentTimeMillis() <= backKeyPressedTime + 2500) {
+				finishAffinity()
+			}
 		}
 	}
+
+
+
+
+

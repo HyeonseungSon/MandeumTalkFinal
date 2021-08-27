@@ -25,11 +25,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:gravity="center"
-                    android:text="Contact Us"
+                    android:text="문의"
                     android:textColor="@color/mainPink"
                     android:textSize="17sp"
                     android:textStyle="bold" />
                 <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@color/mainSkyBlue"
@@ -38,12 +39,12 @@
 
             </LinearLayout>
 
-            <ImageView
+            <WebView
+                android:id="@+id/webView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:src="@drawable/contactuswebpage"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+                app:layout_constraintTop_toTopOf="@+id/linearLayout6" />
 
             <LinearLayout
                 android:weightSum="5"
@@ -142,7 +143,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Infomation"
+                    android:text="컨텐츠"
                     android:textColor="@color/mainPink"
                     android:textSize="13sp" />
 
@@ -152,7 +153,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Portfolio"
+                    android:text="포트폴리오"
                     android:textColor="@color/mainPink"
                     android:textSize="13sp" />
 
@@ -162,7 +163,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Board"
+                    android:text="게시판"
                     android:textColor="@color/mainPink"
                     android:textSize="13sp" />
 
@@ -172,7 +173,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Contact Us"
+                    android:text="문의"
                     android:textColor="@color/mainSkyBlue"
                     android:textSize="13sp" />
 
@@ -182,7 +183,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Account"
+                    android:text="나의 계정"
                     android:textColor="@color/mainPink"
                     android:textSize="13sp" />
             </LinearLayout>

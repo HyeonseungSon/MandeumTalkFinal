@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "486741499598",
-    "firebase_url": "https://mandeum-db705-default-rtdb.firebaseio.com",
-    "project_id": "mandeum-db705",
-    "storage_bucket": "mandeum-db705.appspot.com"
+    "project_number": "362569052885",
+    "firebase_url": "https://mandeumtalk-a3349-default-rtdb.firebaseio.com",
+    "project_id": "mandeumtalk-a3349",
+    "storage_bucket": "mandeumtalk-a3349.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486741499598:android:0e3053630d0ff8eb7a3a9f",
+        "mobilesdk_app_id": "1:362569052885:android:7284db4addc813b7ef285c",
         "android_client_info": {
           "package_name": "com.rud.mandeumtalk"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486741499598-6pave4nomegeiv2k636c6g5s2bh8mkfh.apps.googleusercontent.com",
+          "client_id": "362569052885-b2j2e54tk1tdomnpakkdosrnbnc5askm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.rud.mandeumtalk",
-            "certificate_hash": "732b9b029e0a8cd3d6bda955e23b860881054981"
+            "certificate_hash": "ad039be8e983b014f56e9281204c701d5f5061f9"
           }
         },
         {
-          "client_id": "486741499598-2dhe1kflsraa90qe5g7sj3mck9vlbkbo.apps.googleusercontent.com",
+          "client_id": "362569052885-87or16iq8eahvc92r7500n9ek1lmp79e.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCEhdZ__VJs_1zy3sFp8yXaBKMcH0O3VEE"
+          "current_key": "AIzaSyCvXbQCQH0HYYJHQFH4MrjE10ZxrPeP2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486741499598-2dhe1kflsraa90qe5g7sj3mck9vlbkbo.apps.googleusercontent.com",
+              "client_id": "362569052885-87or16iq8eahvc92r7500n9ek1lmp79e.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

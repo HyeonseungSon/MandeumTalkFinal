@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,44 +13,46 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:background="@color/white"
-                android:orientation="vertical"
                 android:id="@+id/linearLayout10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
                     android:gravity="center"
-                    android:text="Information"
+                    android:text="컨텐츠"
                     android:textColor="@color/mainPink"
                     android:textSize="17sp"
                     android:textStyle="bold" />
+
                 <LinearLayout
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/mainSkyBlue"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/mainSkyBlue" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:background="@color/white"
                 android:id="@+id/linearLayout11"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:background="@color/white"
                 android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="5dp"
                     android:weightSum="5">
 
@@ -61,6 +63,7 @@
                         android:layout_weight="1"
                         android:padding="5dp"
                         android:src="@drawable/education" />
+
                     <ImageView
                         android:id="@+id/cookingIcon"
                         android:layout_width="match_parent"
@@ -93,99 +96,149 @@
                         android:padding="5dp"
                         android:src="@drawable/caravan" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_marginBottom="3dp"
-                    android:weightSum="5"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
                     <TextView
-                        android:textColor="@color/black"
                         android:id="@+id/educationText"
-                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:text="Education"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:textColor="@color/black" />
+
                     <TextView
-                        android:textColor="@color/black"
                         android:id="@+id/cookingText"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:text="Cooking"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Cooking"
+                        android:textColor="@color/black" />
+
                     <TextView
                         android:id="@+id/forestText"
-                        android:textColor="@color/black"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:text="Forest"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Forest"
+                        android:textColor="@color/black" />
+
                     <TextView
                         android:id="@+id/campingText"
-                        android:textColor="@color/black"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:text="Camping"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Camping"
+                        android:textColor="@color/black" />
+
                     <TextView
                         android:id="@+id/caravanText"
-                        android:textColor="@color/black"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:text="Caravan"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Caravan"
+                        android:textColor="@color/black" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:background="@color/mainPink"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    android:layout_height="1dp"
+                    android:background="@color/mainPink" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:background="@color/white"
-                android:orientation="vertical"
+                android:visibility="visible"
+                android:id="@+id/contentsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
 
-                <ImageView
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/righthere" />
+                    android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/mainSkyBlue"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical">
 
-                <ImageView
-                    android:src="@drawable/together"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/righthere" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/mainSkyBlue" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/together" />
+
+                        <ImageView
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/togethertext" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/address" />
+
+                    </LinearLayout>
+                </ScrollView>
             </LinearLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:background="@color/white"
+                android:visibility="invisible"
+                android:id="@+id/contentsListRV"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout11" />
+
+            <WebView
+                android:visibility="invisible"
+                android:id="@+id/contentFragmentWebView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout11" />
+
             <LinearLayout
-                android:weightSum="5"
                 android:id="@+id/linearLayout7"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/mainPink"
+                android:weightSum="5"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout5">
 
                 <LinearLayout
-                    android:background="@color/mainSkyBlue"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:background="@color/mainSkyBlue" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -200,7 +253,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -209,12 +262,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@color/white"
-                android:paddingTop="3dp"
-                android:weightSum="5"
                 android:id="@+id/linearLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
+                android:background="@color/white"
+                android:paddingTop="3dp"
+                android:weightSum="5"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -256,12 +309,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@color/white"
-                android:weightSum="5"
                 android:id="@+id/linearLayout8"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
+                android:background="@color/white"
                 android:orientation="horizontal"
+                android:weightSum="5"
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
@@ -270,7 +323,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Infomation"
+                    android:text="컨텐츠"
                     android:textColor="@color/mainSkyBlue"
                     android:textSize="13sp" />
 
@@ -280,7 +333,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Portfolio"
+                    android:text="포트폴리오"
                     android:textColor="@color/mainPink"
                     android:textSize="13sp" />
 
@@ -290,7 +343,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Board"
+                    android:text="게시판"
                     android:textColor="@color/mainPink"
                     android:textSize="13sp" />
 
@@ -300,7 +353,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Contact Us"
+                    android:text="문의"
                     android:textColor="@color/mainPink"
                     android:textSize="13sp" />
 
@@ -310,7 +363,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Account"
+                    android:text="나의 계정"
                     android:textColor="@color/mainPink"
                     android:textSize="13sp" />
             </LinearLayout>

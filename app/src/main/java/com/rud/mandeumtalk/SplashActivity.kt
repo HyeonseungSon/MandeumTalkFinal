@@ -25,6 +25,8 @@ class SplashActivity : AppCompatActivity() {
 
 		lodingImage.playAnimation()
 
+		println("SplashActivity.kt.currentUser.uid : ${auth.currentUser?.uid}")
+
 		if(auth.currentUser?.uid == null) {
 			Log.d("Splash Activity", "null")
 
@@ -37,7 +39,7 @@ class SplashActivity : AppCompatActivity() {
 			Log.d("Splash Activity", "not null")
 
 			Handler().postDelayed({
-				startActivity(Intent(this, IntroActivity::class.java))
+				startActivity(Intent(this, MainActivity::class.java))
 				finish()
 			},2500)
 		}

@@ -3,23 +3,35 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.38229166666666664" />
-        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/drawable/button_background_mainpink.xml" value="0.38229166666666664" />
-        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/drawable/button_background_mainskyblue.xml" value="0.38229166666666664" />
-        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/activity_board.xml" value="0.36614583333333334" />
-        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/activity_board_write.xml" value="0.36614583333333334" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout-land/activity_intro.xml" value="0.30885416666666665" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout-land/activity_join.xml" value="0.30885416666666665" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout-land/activity_login.xml" value="0.3015625" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout-land/fragment_intro.xml" value="0.3015625" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout-land/fragment_login.xml" value="0.3015625" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/activity_contents_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/activity_contents_show.xml" value="0.36614583333333334" />
         <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/activity_intro.xml" value="0.36614583333333334" />
-        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/activity_login.xml" value="0.20364583333333333" />
-        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/activity_main.xml" value="0.3605128205128205" />
-        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/activity_splash.xml" value="0.36614583333333334" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/activity_join.xml" value="0.36614583333333334" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/activity_portfolio_show.xml" value="0.36614583333333334" />
         <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/board_item.xml" value="0.36614583333333334" />
         <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/fragment_account.xml" value="0.36614583333333334" />
         <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/fragment_board.xml" value="0.36614583333333334" />
-        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/fragment_contactus.xml" value="0.36614583333333334" />
-        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/fragment_guide.xml" value="0.36614583333333334" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/fragment_contents_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/fragment_cooking.xml" value="0.36614583333333334" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/fragment_education.xml" value="0.36614583333333334" />
         <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/fragment_home.xml" value="0.36614583333333334" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/fragment_intro.xml" value="0.36614583333333334" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/fragment_login.xml" value="0.36614583333333334" />
         <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/fragment_portfolio.xml" value="0.36614583333333334" />
-        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.20625" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/layout/hate_board_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/02WorkSpaces/AndroidStudioProjects/MandeumTalk/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/user/Desktop/MandeumTalk/app/src/main/res/layout/activity_board_view.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/user/Desktop/MandeumTalk/app/src/main/res/layout/bookmark_rv_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/user/Desktop/MandeumTalk/app/src/main/res/layout/content_rv_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/user/Desktop/MandeumTalk/app/src/main/res/layout/fragment_account.xml" value="0.28177083333333336" />
+        <entry key="..\:/Users/user/Desktop/MandeumTalk/app/src/main/res/layout/fragment_board.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/user/Desktop/MandeumTalk/app/src/main/res/layout/fragment_home.xml" value="0.25677083333333334" />
       </map>
     </option>
   </component>

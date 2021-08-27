@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".auth.IntroActivity">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="30dp">
+
+                <Button
+                    android:id="@+id/naverLoginButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="70dp"
+                    android:background="@drawable/button_background_naver"
+                    android:text="네이버 로그인"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/kakaoLoginButton"
+                    android:layout_marginTop="30dp"
+                    android:src="@drawable/kakao_login_large_wide"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+
+<!--                <Button-->
+<!--                    android:id="@+id/kakaoLoginButton"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginTop="30dp"-->
+<!--                    android:background="@drawable/button_background_kakao"-->
+<!--                    android:text="카카오 로그인"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:textColor="@color/kakaoBrown"-->
+<!--                    android:textSize="16sp" />-->
+
+
+                <Button
+                    android:id="@+id/googleLoginButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/button_background_google"
+                    android:text="구글 로그인"
+                    android:textAllCaps="false"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_editor_absoluteX="30dp">
+
+                <Button
+                    android:id="@+id/joinBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/button_background_mainskyblue"
+                    android:text="회원가입"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/noAcouuntBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="70dp"
+                    android:background="@drawable/button_background_mainpink"
+                    android:text="비회원 로그인"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

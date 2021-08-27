@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="mainGray">#EAEAEA</color>
+    <color name="facebookBlue">#3b5998</color>
+    <color name="kakaoYellow">#ffe812</color>
+    <color name="kakaoBrown">#441904</color>
+    <color name="googleRed">#DB4437</color>
+    <color name="naverGreen">#2db400</color>
     <color name="darkGray">#A9A9A9</color>
+
     <color name="mainIvory">#FFF4EB</color>
     <color name="mainPink">#FBC0BC</color>
     <color name="mainSkyBlue">#BEE5E0</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -16,6 +22,5 @@
     <color name="colorPrimary">#ededed</color>
     <color name="colorNavIcon">#1d1d1d</color>
     <color name="colorDivision">#e0e0e0</color>
-    <color name="colorWhite">#FFFFFF</color>
     <color name="colorGoogleSignIn">#d34836</color>
 </resources>

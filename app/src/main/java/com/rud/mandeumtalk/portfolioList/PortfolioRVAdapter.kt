@@ -43,6 +43,7 @@ class PortfolioRVAdapter(val context : Context, val items: ArrayList<PortfolioMo
 
 			itemView.setOnClickListener {
 				Toast.makeText(context, item.title, Toast.LENGTH_LONG).show()
+
 				val intent = Intent(context, PortfolioShowActivity::class.java)
 				intent.putExtra("url", item.webUrl)
 				itemView.context.startActivity(intent)

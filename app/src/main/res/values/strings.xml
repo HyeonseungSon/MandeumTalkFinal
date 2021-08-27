@@ -1,8 +1,20 @@
+<?xml version="1.0"?>
+
 <resources>
+
     <string name="app_name">MandeumTalk</string>
 
-
     <!-- TODO: Remove or change this placeholder text -->
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="kakao_app_key">a58f25b539a64355cfd9e75cfbd6b217</string>
+
+    <string name="naver_client_id">rtWH6aFOEWi1MxvtL7Bq</string>
+
+    <string name="naver_client_secret">KIyQQGQ7nd</string>
+
+    <string name="naver_client_name">만듦</string>
+
 </resources>

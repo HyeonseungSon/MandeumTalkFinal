@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".SplashActivity">
+
+    <TextView
+        android:layout_marginBottom="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="만듦톡"
+        android:textColor="@color/mainPink"
+        android:textSize="27sp"
+        app:layout_constraintBottom_toTopOf="@+id/loading_image" />
+
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loading_image"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        app:lottie_rawRes="@raw/loading_lottie"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="210dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:lottie_autoPlay="true"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/loading_lottie" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

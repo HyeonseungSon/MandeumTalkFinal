@@ -76,15 +76,5 @@
             android:exported="true"
             android:screenOrientation="portrait" />
 
-        <!--        <activity-->
-        <!--            android:name=".board.WriterBoardViewActivity"-->
-        <!--            android:exported="true"-->
-        <!--            android:screenOrientation="portrait" />-->
-
-        <!--        <activity-->
-        <!--            android:name=".board.HateBoardViewActivity"-->
-        <!--            android:exported="true"-->
-        <!--            android:screenOrientation="portrait" />-->
-
     </application>
 </manifest>

@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
 
 	private lateinit var auth: FirebaseAuth
 
-
 	var backKeyPressedTime : Long = 0
 	override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -20,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
-
 	}
 
 	override fun onBackPressed() {
@@ -34,8 +32,3 @@ class MainActivity : AppCompatActivity() {
 			}
 		}
 	}
-
-
-
-
-

@@ -23,14 +23,9 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.rud.mandeumtalk.R
 import com.rud.mandeumtalk.contentsList.ContentModel
-import com.rud.mandeumtalk.contentsList.ContentsListActivity
 import com.rud.mandeumtalk.contentsList.ContentsRVAdapter
 import com.rud.mandeumtalk.contentsList.ContentsShowActivity
-import com.rud.mandeumtalk.contentsList.fragments.CookingFragment
-import com.rud.mandeumtalk.contentsList.fragments.EducationFragment
 import com.rud.mandeumtalk.databinding.FragmentBoardBinding
-import kotlinx.android.synthetic.main.fragment_board.*
-import kotlinx.android.synthetic.main.fragment_education.*
 
 
 class BoardFragment : Fragment(){

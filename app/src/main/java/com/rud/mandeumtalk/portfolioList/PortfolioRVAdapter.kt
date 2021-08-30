@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rud.mandeumtalk.R
-import kotlinx.android.synthetic.main.portfolio_rv_item.view.*
 
 class PortfolioRVAdapter(val context : Context, val items: ArrayList<PortfolioModel>) :
 	RecyclerView.Adapter<PortfolioRVAdapter.ViewHolder>() {

@@ -1,11 +1,8 @@
 package com.rud.mandeumtalk.fragments
 
 import android.app.Activity
-import android.app.ActivityOptions
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,16 +19,12 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.auth.AuthApiClient
-import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.common.model.KakaoSdkError
-import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.rud.mandeumtalk.MainActivity
 import com.rud.mandeumtalk.R
-import com.rud.mandeumtalk.auth.IntroActivity
 import com.rud.mandeumtalk.auth.JoinActivity
 import com.rud.mandeumtalk.databinding.FragmentIntroBinding
 
@@ -75,62 +68,6 @@ class IntroFragment : Fragment() {
         //구글 로그인 클래스를 만듬
         googleSignInClient = GoogleSignIn.getClient(activity, gso)
 
-
-
-
-        // 카카오 오류 표시
-//        val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
-//            if (error != null) {
-//                when {
-//                    error.toString() == AuthErrorCause.AccessDenied.toString() -> {
-//                        Toast.makeText(context, "접근이 거부 됨(동의 취소)", Toast.LENGTH_SHORT).show()
-//                    }
-//                    error.toString() == AuthErrorCause.InvalidClient.toString() -> {
-//                        Toast.makeText(context, "유효하지 않은 앱", Toast.LENGTH_SHORT).show()
-//                    }
-//                    error.toString() == AuthErrorCause.InvalidGrant.toString() -> {
-//                        Toast.makeText(context, "인증 수단이 유효하지 않아 인증할 수 없는 상태", Toast.LENGTH_SHORT).show()
-//                    }
-//                    error.toString() == AuthErrorCause.InvalidRequest.toString() -> {
-//                        Toast.makeText(context, "요청 파라미터 오류", Toast.LENGTH_SHORT).show()
-//                    }
-//                    error.toString() == AuthErrorCause.InvalidScope.toString() -> {
-//                        Toast.makeText(context, "유효하지 않은 scope ID", Toast.LENGTH_SHORT).show()
-//                    }
-//                    error.toString() == AuthErrorCause.Misconfigured.toString() -> {
-//                        Toast.makeText(context, "설정이 올바르지 않음(android key hash)", Toast.LENGTH_SHORT).show()
-//                    }
-//                    error.toString() == AuthErrorCause.ServerError.toString() -> {
-//                        Toast.makeText(context, "서버 내부 에러", Toast.LENGTH_SHORT).show()
-//                    }
-//                    error.toString() == AuthErrorCause.Unauthorized.toString() -> {
-//                        Toast.makeText(context, "앱이 요청 권한이 없음", Toast.LENGTH_SHORT).show()
-//                    }
-//                    else -> { // Unknown
-//                        Toast.makeText(context, "기타 에러", Toast.LENGTH_SHORT).show()
-//                        println("IntroFragment.kt.error:$error")
-//                    }
-//                }
-//            }
-//            else if (token != null) {
-//                Toast.makeText(context, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-//                val intent = Intent(activity, MainActivity::class.java)
-//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                startActivity(intent)
-//            }
-//        }
-
-//        // 카카오 버튼
-//        binding.kakaoLoginButton.setOnClickListener {
-//            if (UserApiClient.instance.isKakaoTalkLoginAvailable(requireContext())) {
-//                UserApiClient.instance.loginWithKakaoTalk(requireContext(), callback = callback)
-//                Toast.makeText(requireContext(), "카카오톡 로그인 시도", Toast.LENGTH_SHORT).show()
-//            } else {
-//                UserApiClient.instance.loginWithKakaoAccount(requireContext(), callback = callback)
-//                Toast.makeText(requireContext(), "카카오 계정 로그인 시도", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-
         // KakaoTalk Login
         binding.kakaoLoginButton.setOnClickListener {
 
@@ -157,53 +94,6 @@ class IntroFragment : Fragment() {
                 //로그인 필요
                 kakaoLogin()
             }
-
-//            // 단말기에 카카오톡 앱이 설치되어 있는 경우입니다.
-//            if (UserApiClient.instance.isKakaoTalkLoginAvailable(requireContext())) {
-//                println("Hyeonseung : Kakao Talk app is already installed")
-//                UserApiClient.instance.loginWithKakaoTalk(requireContext()) { token, error ->
-//                    if (error != null) {
-//                        Toast.makeText(requireContext(), "카카오톡 로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
-//
-//                        UserApiClient.instance.me { user, error ->
-//                            if (error != null) {
-//                                Toast.makeText(requireContext(), "사용자 정보 요청 실패 $error", Toast.LENGTH_SHORT).show()
-//                                println("IntroFragment.kt.error:$error")
-//                            }
-//                            else if (user != null) {
-//                                Toast.makeText(requireContext(), "이메일: ${user.kakaoAccount?.email}" +
-//                                        "\n닉네임: ${user.kakaoAccount?.profile?.nickname}", Toast.LENGTH_SHORT).show()
-//                            } else {
-//                                Toast.makeText(requireContext(), "elseelseelseelseelseelse", Toast.LENGTH_SHORT).show()
-//                            }
-//                        }
-//
-//                        val intent = Intent(activity, MainActivity::class.java)
-//                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                        startActivity(intent)
-//                    }
-//                    else if (token != null) {
-//                        Toast.makeText(requireContext(), "Login Fail", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
-//
-//            // 단말기에 카카오톡 앱이 설치되어 있지 않은 경우입니다.
-//            // 웹 브라우저를 실행하여 카카오계정 로그인 화면을 출력합니다.
-//            else {
-//                // Web Kakao Login
-//                UserApiClient.instance.loginWithKakaoAccount(requireContext()) { token, error ->
-//                    if (error != null) {
-//                        println("Hyeonseung : Login Ture")
-//                        println("Hyeonseung.error : $error")
-//                        println("Hyeonseung.token : $token")
-//                    }
-//                    else if (token != null) {
-//                        println("Hyeonseung.token : $token")
-//                    }
-//                }
-//            }
-
         }
 
         // 회원 가입
@@ -214,28 +104,12 @@ class IntroFragment : Fragment() {
             startActivity(intent)
         }
 
-        // 네이버 로그인
         binding.naverLoginButton.setOnClickListener {
-            //네이버 로그인
-            mOAuthLoginModule = OAuthLogin.getInstance()
-            mOAuthLoginModule.init(
-                context, getString(R.string.naver_client_id)
-                ,getString(R.string.naver_client_secret)
-                ,getString(R.string.naver_client_name))
-            mOAuthLoginModule.startOauthLoginActivity(activity, mOAuthLoginHandler);
-
-            val intent = Intent(activity, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
+            Toast.makeText(context, "네이버 로그인은 개발 중입니다.\n카카오 로그인은 가능합니다.", Toast.LENGTH_SHORT).show()
         }
 
-        // 구글 로그인
         binding.googleLoginButton.setOnClickListener {
-
-
-
-            var signInIntent = googleSignInClient?.signInIntent
-            startActivityForResult(signInIntent, GOOGLE_LOGIN_CODE)
+            Toast.makeText(context, "구글 로그인은 개발 중입니다.\n카카오 로그인은 가능합니다.", Toast.LENGTH_SHORT).show()
         }
 
         // 비회원 가입
@@ -246,9 +120,7 @@ class IntroFragment : Fragment() {
                         val intent = Intent(activity, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
-
-                        Toast.makeText(context, "로그인 성공", Toast.LENGTH_LONG).show()
-
+                        Toast.makeText(context, "비회원 로그인에 성공하였습니다.\n반갑습니다. 만듦톡 입니다.", Toast.LENGTH_LONG).show()
                     } else {
                         Toast.makeText(context, "실패", Toast.LENGTH_LONG).show()
                     }
@@ -324,28 +196,10 @@ class IntroFragment : Fragment() {
             println("Hyeonseung : Kakao Talk app is already installed")
             UserApiClient.instance.loginWithKakaoTalk(requireContext()) { token, error ->
                 if (error != null) {
-                    Toast.makeText(context, "카카오'톡' 로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
-
-                    UserApiClient.instance.me { user, error ->
-                        if (error != null) {
-                            Toast.makeText(context, "사용자 정보 요청 실패 $error", Toast.LENGTH_SHORT).show()
-                            println("IntroFragment.kt.error:$error")
-                        }
-                        else if (user != null) {
-                            Toast.makeText(context, "이메일: ${user.kakaoAccount?.email}" +
-                                    "\n닉네임: ${user.kakaoAccount?.profile?.nickname}", Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(requireContext(), "elseelseelseelseelseelse", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-
-                    val intent = Intent(activity, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
+                    Toast.makeText(context, "카카오톡 로그인 실패\n관리자 문의", Toast.LENGTH_SHORT).show()
                 }
                 else if (token != null) {
-                    Toast.makeText(requireContext(), "카카오'톡' 로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(requireContext(), "카카오톡 로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
                     getKakaoUserInformation()
                 }
             }
@@ -357,7 +211,7 @@ class IntroFragment : Fragment() {
             // Web Kakao Login
             UserApiClient.instance.loginWithKakaoAccount(requireContext()) { token, error ->
                 if (error != null) {
-                    Toast.makeText(requireContext(), "카카오 계정 로그인 오류 발생", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "카카오 계정 로그인 오류 발생\n관리자 문의", Toast.LENGTH_SHORT).show()
                 }
                 else if (token != null) {
                     Toast.makeText(requireContext(), "카카오 계정 로그인 성공", Toast.LENGTH_SHORT).show()
@@ -372,49 +226,42 @@ class IntroFragment : Fragment() {
 
         UserApiClient.instance.me { user, error ->
             if (error != null) {
-                Toast.makeText(requireContext(), "카카오 계정 사용자 정보 가져오기 실패", Toast.LENGTH_SHORT).show()
-                println()
-                Log.e(TAG, "사용자 정보 요청 실패", error)
+                Toast.makeText(requireContext(), "카카오 계정 사용자 정보 추출 실패\n관리자 문의", Toast.LENGTH_SHORT).show()
             }
             else if (user != null) {
                 Toast.makeText(requireContext(), "카카오 계정 사용자 정보 가져오기 성공", Toast.LENGTH_SHORT).show()
                 val kakaoUserNickname : String = user.kakaoAccount?.profile?.nickname.toString()
                 val kakaoUserEmail : String = user.kakaoAccount?.email.toString()
-                println("Hyeonseung.kakaoUserNickname : $kakaoUserNickname")
-                println("Hyeonseung.kakaoUserEmail : $kakaoUserEmail")
                 kakaoUserJoinUs(kakaoUserEmail)
             }
         }
     }
 
+    // 카카오톡 또는 카카오 계정으로 가입한 유저를 만듦톡 회원으로 가입시키는 과정입니다.
+    // 모든 카카오 로그인 회원의 비밀번호는 12341234 입니다.
     private fun kakaoUserJoinUs (email : String) {
 
         auth.createUserWithEmailAndPassword(email, "12341234").addOnCompleteListener(requireActivity()) { task ->
             if (task.isSuccessful) {
+                // 카카오 로그인을 통한 만듦톡 방문이 처음인 유저의 경우 -> Firebase Auth 회원가입
+                // 이메일 : 카카오톡 이메일 / 비밀번호 : 12341234
                 Toast.makeText(requireContext(), "카카오톡 회원가입이 완료되었습니다.\n반갑습니다. 만듦톡 입니다.", Toast.LENGTH_LONG).show()
-
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
-
             } else {
-                Toast.makeText(requireContext(), "카카오톡 로그인을 진행합니다.", Toast.LENGTH_LONG).show()
+                // 카카오 로그인을 통한 만듦톡 방문이 처음이 아닌 유저의 경우 -> Firebase Auth 로그인
                 auth.signInWithEmailAndPassword(email, "12341234").addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-
                         val intent = Intent(activity, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
-
-                        Toast.makeText(context, "카카오톡 로그인 성공", Toast.LENGTH_LONG).show()
-
+                        Toast.makeText(requireContext(), "카카오톡 로그인이 완료되었습니다.\n반갑습니다. 만듦톡 입니다.", Toast.LENGTH_LONG).show()
                     } else {
-
-                        Toast.makeText(context, "카카오톡 로그인 실패", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "카카오톡 로그인 실패\n관리자 문의", Toast.LENGTH_LONG).show()
                     }
                 }
             }
         }
-
     }
 }

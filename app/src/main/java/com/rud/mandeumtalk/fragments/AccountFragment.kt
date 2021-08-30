@@ -14,7 +14,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -55,7 +54,6 @@ class AccountFragment : Fragment() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
 	}
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -63,23 +61,26 @@ class AccountFragment : Fragment() {
 		auth = Firebase.auth
 		binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account, container, false)
 
-		getBookmarkData()
+		// Logout Button
+		binding.accountBtnLogout.setOnClickListener {
+			logoutDialog()
+		}
 
 		// Bookmark
+		getBookmarkData()
 		rvAdapter = BookmarkRVAdapter(requireContext(), items, itemKeyList, bookmarkIdList)
 		val rv : RecyclerView = binding.bookmarkRV
 		rv.adapter = rvAdapter
-
 		rv.layoutManager = GridLayoutManager(requireContext(), 3)
 
 		// 나의 계정 화면에 내가 신고한 게시물을 출력합니다.
 		getHateListData()
 		hateRvAdapter = HateListRVAdapter(requireContext(), hateItems, hateItemKeyList, hateList)
-
 		val hateRv : RecyclerView = binding.hateListRV
 		hateRv.adapter = hateRvAdapter
 		hateRv.layoutManager = GridLayoutManager(requireContext(), 3)
 
+		// Home Icon
 		binding.homeIcon.setOnClickListener {
 			it.findNavController().navigate(R.id.action_accountFragment_to_guideFragment)
 		}
@@ -87,6 +88,7 @@ class AccountFragment : Fragment() {
 			it.findNavController().navigate(R.id.action_accountFragment_to_guideFragment)
 		}
 
+		// Portfolio Icon
 		binding.portfolioIcon.setOnClickListener {
 			it.findNavController().navigate(R.id.action_accountFragment_to_portfolioFragment)
 		}
@@ -94,6 +96,7 @@ class AccountFragment : Fragment() {
 			it.findNavController().navigate(R.id.action_accountFragment_to_portfolioFragment)
 		}
 
+		// Board Icon
 		binding.boardIcon.setOnClickListener {
 			it.findNavController().navigate(R.id.action_accountFragment_to_homeFragment)
 		}
@@ -101,15 +104,12 @@ class AccountFragment : Fragment() {
 			it.findNavController().navigate(R.id.action_accountFragment_to_homeFragment)
 		}
 
+		// Contact Us Icon
 		binding.contactUsIcon.setOnClickListener {
 			it.findNavController().navigate(R.id.action_accountFragment_to_boardFragment)
 		}
 		binding.contactUsText.setOnClickListener {
 			it.findNavController().navigate(R.id.action_accountFragment_to_boardFragment)
-		}
-
-		binding.accountBtnLogout.setOnClickListener {
-			logoutDialog()
 		}
 
 		// 유저의 이메일 정보를 나의 계정 화면 상단에 출력합니다.
@@ -120,10 +120,10 @@ class AccountFragment : Fragment() {
 		} else {
 			binding.userEmail.text = currentUserEmail
 		}
-
 		return binding.root
 	}
 
+	// Logout Dialog
 	private fun logoutDialog() {
 		try{
 			builder = AlertDialog.Builder(getContext())
@@ -137,22 +137,19 @@ class AccountFragment : Fragment() {
 					if (error != null) {
 						Toast.makeText(context, "로그아웃에 성공하였습니다.\n로그인 화면으로 돌아갑니다.", Toast.LENGTH_SHORT).show()
 					} else {
-						Toast.makeText(context, "로그아웃에 실패하였습니다.\n관리자에게 문의 바랍니다.", Toast.LENGTH_SHORT).show()
+						Toast.makeText(context, "로그아웃 실패\n관리자 문의", Toast.LENGTH_SHORT).show()
 					}
 				}
-				Toast.makeText(context, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
 				val intent = Intent(activity, IntroActivity::class.java)
 				intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
 				startActivity(intent)
 			})
 			builder.setPositiveButton("취소", DialogInterface.OnClickListener { dialog, which ->
-
 				Toast.makeText(context, "로그아웃을 취소했습니다.", Toast.LENGTH_SHORT).show()
 			})
 			alertDialog = builder.create()
 			try {
 				alertDialog.show()
-
 			} catch (e : Exception){
 				Log.e("AccountFragment.alertDialog.show().Exception : ", e.toString())
 				e.printStackTrace()
@@ -164,7 +161,6 @@ class AccountFragment : Fragment() {
 	}
 
 	private fun getBookmarkData() {
-
 		val postListener = object : ValueEventListener {
 			override fun onDataChange(dataSnapshot: DataSnapshot) {
 
@@ -179,14 +175,15 @@ class AccountFragment : Fragment() {
 
 			}
 			override fun onCancelled(databaseError: DatabaseError) {
-
+				Log.e("AccountFragment.getBookmarkData().databaseError : ",
+					databaseError.toString(),
+					databaseError.toException())
 			}
 		}
 		Firebase.database.getReference("Bookmark_List").child(FirebaseAuth.getInstance().currentUser?.uid.toString()).addValueEventListener(postListener)
 	}
 
 	private fun getEducationData () {
-
 		val postListener = object : ValueEventListener {
 			override fun onDataChange(dataSnapshot: DataSnapshot) {
 
@@ -204,14 +201,15 @@ class AccountFragment : Fragment() {
 				rvAdapter.notifyDataSetChanged()
 			}
 			override fun onCancelled(databaseError: DatabaseError) {
-
+				Log.e("AccountFragment.getEducationData().databaseError : ",
+					databaseError.toString(),
+					databaseError.toException())
 			}
 		}
 		Firebase.database.getReference("Education").addValueEventListener(postListener)
 	}
 
 	private fun getCookingData () {
-
 		val postListener = object : ValueEventListener {
 			override fun onDataChange(dataSnapshot: DataSnapshot) {
 
@@ -229,16 +227,15 @@ class AccountFragment : Fragment() {
 				rvAdapter.notifyDataSetChanged()
 			}
 			override fun onCancelled(databaseError: DatabaseError) {
-
+				Log.e("AccountFragment.getCookingData().databaseError : ",
+					databaseError.toString(),
+					databaseError.toException())
 			}
 		}
 		Firebase.database.getReference("Cooking").addValueEventListener(postListener)
 	}
 
-	////////////////////////////////////////////////////////////////////////////////////////////////
-
 	private fun getHateListData () {
-
 		val postListener = object : ValueEventListener {
 			override fun onDataChange(dataSnapshot: DataSnapshot) {
 
@@ -250,7 +247,7 @@ class AccountFragment : Fragment() {
 				getBoardData()
 			}
 			override fun onCancelled(databaseError: DatabaseError) {
-				Log.e("AccountFragment.getHateListData().databaseError",
+				Log.e("AccountFragment.getHateListData().databaseError : ",
 						databaseError.toString(),
 						databaseError.toException())
 			}
@@ -281,6 +278,4 @@ class AccountFragment : Fragment() {
 		}
 		Firebase.database.getReference("Board").addValueEventListener(postListener)
 	}
-
-
 }

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".auth.IntroActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout13"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="30dp">
+
+                <ImageView
+                    android:id="@+id/naverLoginButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/navericon" />
+
+                <ImageView
+                    android:id="@+id/kakaoLoginButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/kakaoicon" />
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/kakaoLoginButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:layout_marginRight="30dp"-->
+<!--                    android:src="@drawable/kakao_login_large" />-->
+
+                <ImageView
+                    android:id="@+id/googleLoginButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/googleicon" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
+                tools:layout_editor_absoluteX="30dp">
+
+                <Button
+                    android:id="@+id/joinBtn"
+                    android:layout_width="200dp"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/button_background_mainskyblue"
+                    android:text="회원가입"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/noAcouuntBtn"
+                    android:layout_width="200dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/button_background_mainpink"
+                    android:text="비회원 로그인"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

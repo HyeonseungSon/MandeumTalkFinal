@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -52,7 +51,6 @@ class BoardAdapter (val items : ArrayList<BoardModel>) : RecyclerView.Adapter<Bo
             itemView.findViewById<TextView>(R.id.input4).text = item.dateTime
             itemView.findViewById<TextView>(R.id.input5).text = item.writerUid
             val key = item.key
-            Log.e("keykey", key)
 
             val storageReference = Firebase.storage.reference.child(key + ".png")
             val imageViewFromFB = itemView.findViewById<ImageView>(R.id.imageView3)

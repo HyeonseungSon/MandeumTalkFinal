@@ -135,9 +135,9 @@ class AccountFragment : Fragment() {
 				auth.signOut()
 				UserApiClient.instance.logout { error ->
 					if (error != null) {
-						Toast.makeText(context, "로그아웃에 성공하였습니다.\n로그인 화면으로 돌아갑니다.", Toast.LENGTH_SHORT).show()
-					} else {
 						Toast.makeText(context, "로그아웃 실패\n관리자 문의", Toast.LENGTH_SHORT).show()
+					} else {
+						Toast.makeText(context, "로그아웃에 성공하였습니다.\n로그인 화면으로 돌아갑니다.", Toast.LENGTH_SHORT).show()
 					}
 				}
 				val intent = Intent(activity, IntroActivity::class.java)

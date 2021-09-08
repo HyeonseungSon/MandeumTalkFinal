@@ -167,7 +167,6 @@ class BoardFragment : Fragment(){
 					val item = dataModel.getValue(ContentModel::class.java)
 					items.add(item!!)
 				}
-				println("EducationFragment.kt.items:$items")
 				rvAdapter.notifyDataSetChanged()
 			}
 

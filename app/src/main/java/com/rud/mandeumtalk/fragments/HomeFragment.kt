@@ -43,7 +43,6 @@ class HomeFragment : Fragment() {
 
 		val items = ArrayList<BoardModel>()
 
-		Log.e("boardKeyList", boardKeyList.toString())
 		val adapter = BoardAdapter(items)
 
 		val database = Firebase.database

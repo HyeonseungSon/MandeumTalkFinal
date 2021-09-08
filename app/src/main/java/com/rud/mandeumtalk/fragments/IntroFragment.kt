@@ -1,6 +1,5 @@
 package com.rud.mandeumtalk.fragments
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,46 +8,32 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
-import com.nhn.android.naverlogin.OAuthLogin
-import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.rud.mandeumtalk.MainActivity
 import com.rud.mandeumtalk.R
 import com.rud.mandeumtalk.auth.JoinActivity
 import com.rud.mandeumtalk.databinding.FragmentIntroBinding
+import com.rud.mandeumtalk.firebase.Auth
 
 
 class IntroFragment : Fragment() {
 
-    private val TAG : String = IntroFragment::class.java.simpleName
-    private lateinit var auth: FirebaseAuth
+//    private lateinit var auth: FirebaseAuth
     private lateinit var binding : FragmentIntroBinding
-    private lateinit var mOAuthLoginModule : OAuthLogin
+//    private lateinit var mOAuthLoginModule : OAuthLogin
 
     // onBackPressed()
     private var isDouble = false
 
-    // googleLogin 관리
-    var googleSignInClient: GoogleSignInClient? = null
-
-    //GoogleLogin
-    val GOOGLE_LOGIN_CODE = 9001 // Intent Request ID
+//    // googleLogin 관리
+//    var googleSignInClient: GoogleSignInClient? = null
+//    //GoogleLogin
+//    val GOOGLE_LOGIN_CODE = 9001 // Intent Request ID
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -56,45 +41,44 @@ class IntroFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_intro, container, false)
 
+//        auth = Firebase.auth
 
-        auth = Firebase.auth
+//        //구글 로그인 옵션
+//        var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//            .requestIdToken(getString(R.string.default_web_client_id))
+//            //486741499598-2dhe1kflsraa90qe5g7sj3mck9vlbkbo.apps.googleusercontent.com
+//            .requestEmail()
+//            .build()
+//        //구글 로그인 클래스를 만듬
+//        googleSignInClient = GoogleSignIn.getClient(activity, gso)
 
-        //구글 로그인 옵션
-        var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            //486741499598-2dhe1kflsraa90qe5g7sj3mck9vlbkbo.apps.googleusercontent.com
-            .requestEmail()
-            .build()
-        //구글 로그인 클래스를 만듬
-        googleSignInClient = GoogleSignIn.getClient(activity, gso)
-
-        // KakaoTalk Login
         binding.kakaoLoginButton.setOnClickListener {
-
             // 가장 먼저 로그인을 시도하는 사용자의 토큰 존재 여부를 확인합니다.
             if (AuthApiClient.instance.hasToken()) {
                 UserApiClient.instance.accessTokenInfo { _, error ->
                     if (error != null) {
                         if (error is KakaoSdkError && error.isInvalidTokenError() == true) {
-                            //로그인 필요
                             kakaoLogin()
                         }
                         else {
-                            //기타 에러
+                            Toast.makeText(requireContext(), "카카오 토근 접근 오류 발생\n관리자 문의", Toast.LENGTH_SHORT).show()
                         }
                     }
                     else {
-                        //토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
+                        // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
                         // 토큰이 유효합니다. 로그인이 완료되었습니다.
                         Toast.makeText(requireContext(), "이미 카카오톡 로그인", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(activity, MainActivity::class.java))
+                        kakaoLogin()
                     }
                 }
             }
             else {
-                //로그인 필요
                 kakaoLogin()
             }
         }
+
+
 
         // 회원 가입
         binding.joinBtn.setOnClickListener {
@@ -114,101 +98,97 @@ class IntroFragment : Fragment() {
 
         // 비회원 가입
         binding.noAcouuntBtn.setOnClickListener {
-            auth.signInAnonymously()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val intent = Intent(activity, MainActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
-                        Toast.makeText(context, "비회원 로그인에 성공하였습니다.\n반갑습니다. 만듦톡 입니다.", Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(context, "실패", Toast.LENGTH_LONG).show()
-                    }
-
-                }
-        }
-
-        return binding.root
-
-    }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == GOOGLE_LOGIN_CODE && resultCode == Activity.RESULT_OK) {
-            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
-            if (result.isSuccess) {
-                // Google Sign In was successful, authenticate with Firebase
-                val account = result.signInAccount
-                firebaseAuthWithGoogle(account!!)
-            }
-
-        }
-    }
-
-
-    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
-        val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener {task ->
+            Auth.getAuth().signInAnonymously().addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val intent = Intent(activity, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
-
-                    Toast.makeText(context, "로그인 성공", Toast.LENGTH_LONG).show()
-
+                    Toast.makeText(context, "비회원 로그인에 성공하였습니다.\n반갑습니다. 만듦톡 입니다.", Toast.LENGTH_LONG).show()
                 } else {
-
-                    Toast.makeText(context, "로그인 실패" , Toast.LENGTH_LONG).show()
-
+                    Toast.makeText(context, "비회원 로그인 오류 발생\n관리자 문의", Toast.LENGTH_LONG).show()
                 }
             }
-    }
-
-
-    // 네이버 로그인
-    private val mOAuthLoginHandler: OAuthLoginHandler = object : OAuthLoginHandler() {
-        override fun run(success: Boolean) {
-            if (success) {
-                val accessToken: String = mOAuthLoginModule.getAccessToken(context)
-                val refreshToken: String = mOAuthLoginModule.getRefreshToken(context)
-                val expiresAt: Long = mOAuthLoginModule.getExpiresAt(context)
-                val tokenType: String = mOAuthLoginModule.getTokenType(context)
-            } else {
-                val errorCode: String =
-                    mOAuthLoginModule.getLastErrorCode(context).code
-                val errorDesc: String = mOAuthLoginModule.getLastErrorDesc(context)
-                Toast.makeText(
-                    context, "errorCode:" + errorCode
-                            + ", errorDesc:" + errorDesc, Toast.LENGTH_SHORT
-                ).show()
-            }
         }
+        return binding.root
     }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+//        if (requestCode == GOOGLE_LOGIN_CODE && resultCode == Activity.RESULT_OK) {
+//            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
+//            if (result.isSuccess) {
+//                // Google Sign In was successful, authenticate with Firebase
+//                val account = result.signInAccount
+//                firebaseAuthWithGoogle(account!!)
+//            }
+//
+//        }
+//    }
+
+//    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
+//        val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
+//        auth.signInWithCredential(credential)
+//            .addOnCompleteListener {task ->
+//                if (task.isSuccessful) {
+//                    val intent = Intent(activity, MainActivity::class.java)
+//                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                    startActivity(intent)
+//
+//                    Toast.makeText(context, "로그인 성공", Toast.LENGTH_LONG).show()
+//
+//                } else {
+//
+//                    Toast.makeText(context, "로그인 실패" , Toast.LENGTH_LONG).show()
+//
+//                }
+//            }
+//    }
+
+
+//    // 네이버 로그인
+//    private val mOAuthLoginHandler: OAuthLoginHandler = object : OAuthLoginHandler() {
+//        override fun run(success: Boolean) {
+//            if (success) {
+//                val accessToken: String = mOAuthLoginModule.getAccessToken(context)
+//                val refreshToken: String = mOAuthLoginModule.getRefreshToken(context)
+//                val expiresAt: Long = mOAuthLoginModule.getExpiresAt(context)
+//                val tokenType: String = mOAuthLoginModule.getTokenType(context)
+//            } else {
+//                val errorCode: String =
+//                    mOAuthLoginModule.getLastErrorCode(context).code
+//                val errorDesc: String = mOAuthLoginModule.getLastErrorDesc(context)
+//                Toast.makeText(
+//                    context, "errorCode:" + errorCode
+//                            + ", errorDesc:" + errorDesc, Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//        }
+//    }
 
     // Kakao Login
     private fun kakaoLogin () {
         // 단말기에 카카오톡 앱이 설치되어 있는 경우입니다.
-        if (UserApiClient.instance.isKakaoTalkLoginAvailable(requireContext())) {
-            println("Hyeonseung : Kakao Talk app is already installed")
-            UserApiClient.instance.loginWithKakaoTalk(requireContext()) { token, error ->
-                if (error != null) {
-                    Toast.makeText(context, "카카오톡 로그인 실패\n관리자 문의", Toast.LENGTH_SHORT).show()
-                }
-                else if (token != null) {
-                    Toast.makeText(requireContext(), "카카오톡 로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
-                    getKakaoUserInformation()
-                }
-            }
-        }
+//        if (UserApiClient.instance.isKakaoTalkLoginAvailable(requireContext())) {
+//            println("Hyeonseung : Kakao Talk app is already installed")
+//            UserApiClient.instance.loginWithKakaoTalk(requireContext()) { token, error ->
+//                if (error != null) {
+//                    Toast.makeText(context, "카카오톡 로그인 실패\n관리자 문의", Toast.LENGTH_SHORT).show()
+//                }
+//                else if (token != null) {
+//                    Toast.makeText(requireContext(), "카카오톡 로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
+//                    getKakaoUserInformation()
+//                }
+//            }
+//        }
 
         // 단말기에 카카오톡 앱이 설치되어 있지 않은 경우입니다.
         // 웹 브라우저를 실행하여 카카오계정 로그인 화면을 출력합니다.
-        else {
+//        else {
             // Web Kakao Login
+
+        // 카카오 계정으로
             UserApiClient.instance.loginWithKakaoAccount(requireContext()) { token, error ->
                 if (error != null) {
                     Toast.makeText(requireContext(), "카카오 계정 로그인 오류 발생\n관리자 문의", Toast.LENGTH_SHORT).show()
@@ -218,7 +198,7 @@ class IntroFragment : Fragment() {
                     getKakaoUserInformation()
                 }
             }
-        }
+//        }
     }
 
     // 카카오 계정에서 사용자 정보를 가져옵니다.
@@ -241,7 +221,7 @@ class IntroFragment : Fragment() {
     // 모든 카카오 로그인 회원의 비밀번호는 12341234 입니다.
     private fun kakaoUserJoinUs (email : String) {
 
-        auth.createUserWithEmailAndPassword(email, "12341234").addOnCompleteListener(requireActivity()) { task ->
+        Auth.getAuth().createUserWithEmailAndPassword(email, "").addOnCompleteListener(requireActivity()) { task ->
             if (task.isSuccessful) {
                 // 카카오 로그인을 통한 만듦톡 방문이 처음인 유저의 경우 -> Firebase Auth 회원가입
                 // 이메일 : 카카오톡 이메일 / 비밀번호 : 12341234
@@ -251,7 +231,7 @@ class IntroFragment : Fragment() {
                 startActivity(intent)
             } else {
                 // 카카오 로그인을 통한 만듦톡 방문이 처음이 아닌 유저의 경우 -> Firebase Auth 로그인
-                auth.signInWithEmailAndPassword(email, "12341234").addOnCompleteListener { task ->
+                Auth.getAuth().signInWithEmailAndPassword(email, "").addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val intent = Intent(activity, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

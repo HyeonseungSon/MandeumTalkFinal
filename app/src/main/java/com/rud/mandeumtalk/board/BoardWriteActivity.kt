@@ -6,7 +6,6 @@ import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.*
@@ -75,7 +74,6 @@ class BoardWriteActivity : AppCompatActivity() {
                 val myRef = database.getReference("Board")
 
                 val key = myRef.push().key.toString()
-                Log.e("keyyyy", key)
 
                 myRef.child(key).setValue(BoardModel(title, contents, currentUserUid, writeDateTime, writerUid, key))
 

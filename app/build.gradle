@@ -17,8 +17,8 @@ android {
 
     defaultConfig {
         applicationId "com.rud.mandeumtalk"
-        minSdkVersion 23
-        targetSdkVersion 30
+        minSdkVersion 24
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 

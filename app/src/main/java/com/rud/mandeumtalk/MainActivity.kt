@@ -22,13 +22,13 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	override fun onBackPressed() {
-			if (System.currentTimeMillis() > backKeyPressedTime + 2500) {
-				backKeyPressedTime = System.currentTimeMillis();
-				Toast.makeText(this, "종료하시려면 더블클릭" ,Toast.LENGTH_LONG).show()
-				return;
-			}
-			if (System.currentTimeMillis() <= backKeyPressedTime + 2500) {
-				finishAffinity()
-			}
+		if (System.currentTimeMillis() > backKeyPressedTime + 2500) {
+			backKeyPressedTime = System.currentTimeMillis();
+			Toast.makeText(this, "종료하시려면 더블클릭" ,Toast.LENGTH_LONG).show()
+			return;
+		}
+		if (System.currentTimeMillis() <= backKeyPressedTime + 2500) {
+			finishAffinity()
 		}
 	}
+}

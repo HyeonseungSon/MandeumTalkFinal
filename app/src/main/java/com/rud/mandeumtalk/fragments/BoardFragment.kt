@@ -76,24 +76,24 @@ class BoardFragment : Fragment(){
 		}
 
 		binding.forestIcon.setOnClickListener {
-			setWebView("https://m.search.naver.com/search.naver?sm=mtb_hty.top&where=m_ldic&oquery=%EC%88%B2&tqi=hfh6Xsp0JWlsscOGaCGssssssjs-245958&query=forest")
+			setWebView("https://namu.wiki/w/%EC%88%B2")
 		}
 		binding.forestText.setOnClickListener {
-			setWebView("https://m.search.naver.com/search.naver?sm=mtb_hty.top&where=m_ldic&oquery=%EC%88%B2&tqi=hfh6Xsp0JWlsscOGaCGssssssjs-245958&query=forest")
+			setWebView("https://namu.wiki/w/%EC%88%B2")
 		}
 
 		binding.campingIcon.setOnClickListener {
-			setWebView("https://m.search.naver.com/search.naver?sm=mtb_hty.top&where=m_ldic&oquery=forest&tqi=hfh6wsp0JWVssUS7tFZssssssbN-297883&query=camping")
+			setWebView("https://namu.wiki/w/%EC%BA%A0%ED%95%91")
 		}
 		binding.campingText.setOnClickListener {
-			setWebView("https://m.search.naver.com/search.naver?sm=mtb_hty.top&where=m_ldic&oquery=forest&tqi=hfh6wsp0JWVssUS7tFZssssssbN-297883&query=camping")
+			setWebView("https://namu.wiki/w/%EC%BA%A0%ED%95%91")
 		}
 
 		binding.caravanIcon.setOnClickListener {
-			setWebView("https://m.search.naver.com/search.naver?sm=mtb_hty.top&where=m_ldic&oquery=camping&tqi=hfh60dp0Jx8ssgR7nohssssstfZ-339385&query=caravan")
+			setWebView("https://namu.wiki/w/%EC%BA%A0%ED%95%91%EC%B9%B4")
 		}
 		binding.caravanText.setOnClickListener {
-			setWebView("https://m.search.naver.com/search.naver?sm=mtb_hty.top&where=m_ldic&oquery=camping&tqi=hfh60dp0Jx8ssgR7nohssssstfZ-339385&query=caravan")
+			setWebView("https://namu.wiki/w/%EC%BA%A0%ED%95%91%EC%B9%B4")
 		}
 
 

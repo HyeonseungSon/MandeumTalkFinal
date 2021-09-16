@@ -1,6 +1,5 @@
 package com.rud.mandeumtalk.auth
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
@@ -13,8 +12,7 @@ import kotlinx.android.synthetic.main.activity_intro.*
 
 class IntroActivity : AppCompatActivity() {
 
-	private lateinit var context: Context
-	private var isDouble = false
+	private var isDouble: Boolean = false
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -28,7 +26,7 @@ class IntroActivity : AppCompatActivity() {
 	}
 
 	override fun onBackPressed(){
-		if(isDouble == true) {
+		if(isDouble) {
 			finish()
 		}
 		isDouble = true

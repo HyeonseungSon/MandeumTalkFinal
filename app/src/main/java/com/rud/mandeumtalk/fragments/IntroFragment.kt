@@ -13,7 +13,7 @@ import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
 import com.rud.mandeumtalk.MainActivity
 import com.rud.mandeumtalk.R
-import com.rud.mandeumtalk.auth.JoinActivity
+import com.rud.mandeumtalk.intro.auth.JoinActivity
 import com.rud.mandeumtalk.databinding.FragmentIntroBinding
 import com.rud.mandeumtalk.firebase.Auth
 

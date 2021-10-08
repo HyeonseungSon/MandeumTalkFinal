@@ -10,11 +10,9 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.rud.mandeumtalk.MainActivity
 import com.rud.mandeumtalk.R
-import com.rud.mandeumtalk.auth.JoinActivity
-import com.rud.mandeumtalk.auth.MemberModel
+import com.rud.mandeumtalk.intro.auth.JoinActivity
 import com.rud.mandeumtalk.databinding.FragmentLoginBinding
 import com.rud.mandeumtalk.firebase.Auth
-import com.rud.mandeumtalk.firebase.Database
 
 
 class LoginFragment : Fragment() {

@@ -2,18 +2,17 @@ package com.rud.mandeumtalk.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebViewClient
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.core.view.isVisible
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,184 +21,155 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.rud.mandeumtalk.R
-import com.rud.mandeumtalk.contentsList.ContentModel
-import com.rud.mandeumtalk.contentsList.ContentsRVAdapter
-import com.rud.mandeumtalk.contentsList.ContentsShowActivity
+import com.rud.mandeumtalk.board.*
 import com.rud.mandeumtalk.databinding.FragmentBoardBinding
+import com.rud.mandeumtalk.databinding.FragmentHomeBinding
 
 
-class BoardFragment : Fragment(){
+class BoardFragment : Fragment() {
 
-	private lateinit var auth : FirebaseAuth
+	private lateinit var auth: FirebaseAuth
+	lateinit var  myRef : DatabaseReference
+
 	private lateinit var binding : FragmentBoardBinding
-	lateinit var myRef : DatabaseReference
-	val bookmarkIdList = mutableListOf<String>()
-	lateinit var rvAdapter : ContentsRVAdapter
-	val database = Firebase.database
+
+	private val boardKeyList = mutableListOf<String>()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 	}
 
-	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) : View? {
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 		binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board, container, false)
 
-		binding.educationIcon.setOnClickListener{
+		val items = ArrayList<BoardModel>()
 
-			binding.contentsLayout.isVisible = false
-			binding.contentFragmentWebView.isVisible = false
-			binding.contentsListRV.isVisible = true
-			getContentsList("Education")
-		}
-		binding.educationText.setOnClickListener{
+		val adapter = BoardAdapter(items)
 
-			binding.contentsLayout.isVisible = false
-			binding.contentFragmentWebView.isVisible = false
-			binding.contentsListRV.isVisible = true
-			getContentsList("Education")
-		}
+		val database = Firebase.database
 
-		binding.cookingIcon.setOnClickListener{
+		myRef = database.getReference("Board")
 
-			binding.contentsLayout.isVisible = false
-			binding.contentFragmentWebView.isVisible = false
-			binding.contentsListRV.isVisible = true
-			getContentsList("Cooking")
-		}
-		binding.cookingText.setOnClickListener{
-
-			binding.contentsLayout.isVisible = false
-			binding.contentFragmentWebView.isVisible = false
-			binding.contentsListRV.isVisible = true
-			getContentsList("Cooking")
-		}
-
-		binding.forestIcon.setOnClickListener {
-			setWebView("https://namu.wiki/w/%EC%88%B2")
-		}
-		binding.forestText.setOnClickListener {
-			setWebView("https://namu.wiki/w/%EC%88%B2")
-		}
-
-		binding.campingIcon.setOnClickListener {
-			setWebView("https://namu.wiki/w/%EC%BA%A0%ED%95%91")
-		}
-		binding.campingText.setOnClickListener {
-			setWebView("https://namu.wiki/w/%EC%BA%A0%ED%95%91")
-		}
-
-		binding.caravanIcon.setOnClickListener {
-			setWebView("https://namu.wiki/w/%EC%BA%A0%ED%95%91%EC%B9%B4")
-		}
-		binding.caravanText.setOnClickListener {
-			setWebView("https://namu.wiki/w/%EC%BA%A0%ED%95%91%EC%B9%B4")
-		}
-
-
-		binding.portfolioIcon.setOnClickListener {
-			it.findNavController().navigate(R.id.action_guideFragment_to_portfolioFragment)
-		}
-		binding.portfolioText.setOnClickListener {
-			it.findNavController().navigate(R.id.action_guideFragment_to_portfolioFragment)
-		}
-
-		binding.boardIcon.setOnClickListener {
-			it.findNavController().navigate(R.id.action_guideFragment_to_homeFragment)
-		}
-		binding.boardText.setOnClickListener {
-			it.findNavController().navigate(R.id.action_guideFragment_to_homeFragment)
-		}
-
-		binding.contactUsIcon.setOnClickListener {
-			it.findNavController().navigate(R.id.action_guideFragment_to_boardFragment)
-		}
-		binding.contactUsText.setOnClickListener {
-			it.findNavController().navigate(R.id.action_guideFragment_to_boardFragment)
-		}
-
-		binding.accountIcon.setOnClickListener {
-			it.findNavController().navigate(R.id.action_guideFragment_to_accountFragment)
-		}
-		binding.accountText.setOnClickListener {
-			it.findNavController().navigate(R.id.action_guideFragment_to_accountFragment)
-		}
-
-		return binding.root
-	}
-
-	private fun getBookmarkData() {
 		val postListener = object : ValueEventListener {
+
 			override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-				bookmarkIdList.clear()
-
+				items.clear()
 				for (dataModel in dataSnapshot.children) {
 
-					bookmarkIdList.add(dataModel.key.toString())
+					val item = dataModel.getValue(BoardModel::class.java)
+					adapter.items.add(item!!)
+					boardKeyList.add(dataModel.key.toString())
 				}
-				println("EducationFragment.kt.bookmarkIdList:$bookmarkIdList")
-				rvAdapter.notifyDataSetChanged()
+
+				Log.e("boardKeyList2", boardKeyList.toString())
+				boardKeyList.reverse()
+				items.reverse()
+				adapter.notifyDataSetChanged()
 			}
 			override fun onCancelled(databaseError: DatabaseError) {
 
 			}
 		}
-		val bookmarkRef = database.getReference("Bookmark_List")
-		auth = FirebaseAuth.getInstance()
-		val uid = auth.currentUser?.uid.toString()
-		bookmarkRef.child(uid).addValueEventListener(postListener)
-	}
-
-	private fun getContentsList (category : String) {
-		val items = ArrayList<ContentModel>()
-		val itemKeyList = ArrayList<String>()
-
-		rvAdapter = ContentsRVAdapter(requireContext(), items, itemKeyList, bookmarkIdList)
-
-		myRef = database.getReference(category)
-
-		val postListener = object : ValueEventListener {
-			override fun onDataChange(snapshot: DataSnapshot) {
-
-				for (dataModel in snapshot.children) {
-					itemKeyList.add(dataModel.key.toString())
-					val item = dataModel.getValue(ContentModel::class.java)
-					items.add(item!!)
-				}
-				rvAdapter.notifyDataSetChanged()
-			}
-
-			override fun onCancelled(error: DatabaseError) {
-
-			}
-		}
 		myRef.addValueEventListener(postListener)
 
-		val rv : RecyclerView = binding.contentsListRV
+		binding.boardRecyclerView.adapter = adapter
 
-		rv.adapter = rvAdapter
+		val layoutManager = LinearLayoutManager (activity, LinearLayoutManager.VERTICAL, false)
 
-		rv.layoutManager = GridLayoutManager(activity, 3)
+		binding.boardRecyclerView.layoutManager = layoutManager
 
-		rvAdapter.itemClick = object : ContentsRVAdapter.ItemClick {
-			override fun onClick(view: View, position: Int) {
-				val intent : Intent = Intent(context, ContentsShowActivity::class.java)
-				intent.putExtra("url", items[position].webUrl)
+		adapter.listener = object : OnBoardItemClickListener {
+
+			override fun onItemClick(holder: BoardAdapter.ViewHolder?, view: View?, position: Int) {
+
+				val title = view?.findViewById<TextView>(R.id.input1)?.text
+				val content = view?.findViewById<TextView>(R.id.input2)?.text
+				val writer = view?.findViewById<TextView>(R.id.input3)?.text
+				val dateTime = view?.findViewById<TextView>(R.id.input4)?.text
+				val writerUid : String = view?.findViewById<TextView>(R.id.input5)?.text.toString()
+
+				var intent = Intent(activity, BoardViewActivity::class.java)
+
+				intent.putExtra("Board Title", title)
+				intent.putExtra("Board Content", content)
+				intent.putExtra("Board writer", writer)
+				intent.putExtra("Board dateTime", dateTime)
+				intent.putExtra("Board Writer Uid", writerUid)
+				intent.putExtra("Board Key", boardKeyList[position])
+
 				startActivity(intent)
 			}
 		}
-		getBookmarkData()
+
+		// Start of FAB Icon Animation
+		var fabIconCheck : Boolean = false
+		val boardWriteFAB = binding.boardWriteButton
+		val boardWriteTest = binding.boardWriteText
+
+		val onFABIconAnim : Animation = AnimationUtils.loadAnimation(requireContext(), R.anim.fab_icon_scale_anim_on)
+		val onFABTextAnim : Animation = AnimationUtils.loadAnimation(requireContext(), R.anim.fab_text_alpha_anim_on)
+		val offFABIconAnim : Animation = AnimationUtils.loadAnimation(requireContext(), R.anim.fab_icon_scale_anim_off)
+		val offFABTextAnim : Animation = AnimationUtils.loadAnimation(requireContext(), R.anim.fab_text_alpha_anim_off)
+
+		val rcView = binding.boardRecyclerView
+		rcView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+			if (scrollY > oldScrollY+3 && fabIconCheck == false) { // 내려간다 , 체크가 false 이면
+				boardWriteFAB.startAnimation(onFABIconAnim)
+				boardWriteTest.startAnimation(onFABTextAnim)
+				fabIconCheck = true
+			}
+			if (scrollY+3 < oldScrollY && fabIconCheck == true) { // 올라간다, 체크가 true 이면
+				boardWriteFAB.startAnimation(offFABIconAnim)
+				boardWriteTest.startAnimation(offFABTextAnim)
+				fabIconCheck = false
+			}
+		}
+//            if (oldScrollY >= 1000  && fabIconCheck == false) { // 스크롤 y 값이 500을 이상이면, 체크가 false 이면
+//                mainFabIcon.startAnimation(onFABIconAnim)
+//                mainFabText.startAnimation(onFABTextAnim)
+//                fabIconCheck = true
+//            }
+//            if (oldScrollY < 1000 && fabIconCheck == true) { // 스크롤 y 값이 500미만이고 체크가 true 이면
+//                mainFabIcon.startAnimation(offFABIconAnim)
+//                mainFabText.startAnimation(offFABTextAnim)
+//                fabIconCheck = false
+//            }
+
+		boardWriteFAB.setOnClickListener {
+			val intent = Intent (activity, BoardWriteActivity::class.java)
+			startActivity(intent)
+		}
+
+		binding.homeIcon.setOnClickListener {
+			it.findNavController().navigate(R.id.action_homeFragment_to_guideFragment)
+		}
+		binding.homeText.setOnClickListener {
+			it.findNavController().navigate(R.id.action_homeFragment_to_guideFragment)
+		}
+
+		binding.portfolioIcon.setOnClickListener {
+			it.findNavController().navigate(R.id.action_homeFragment_to_portfolioFragment)
+		}
+		binding.portfolioText.setOnClickListener {
+			it.findNavController().navigate(R.id.action_homeFragment_to_portfolioFragment)
+		}
+
+		binding.contactUsIcon.setOnClickListener {
+			it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+		}
+		binding.contactUsText.setOnClickListener {
+			it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+		}
+
+		binding.accountIcon.setOnClickListener {
+			it.findNavController().navigate(R.id.action_homeFragment_to_accountFragment)
+		}
+		binding.accountText.setOnClickListener {
+			it.findNavController().navigate(R.id.action_homeFragment_to_accountFragment)
+		}
+
+		return binding.root
 	}
-
-	private fun setWebView (url : String) {
-
-		binding.contentsLayout.isVisible = false
-		binding.contentsListRV.isVisible = false
-		binding.contentFragmentWebView.isVisible = true
-		binding.contentFragmentWebView.loadUrl(url)
-		binding.contentFragmentWebView.setWebViewClient(WebViewClient())
-
-	}
-
 }

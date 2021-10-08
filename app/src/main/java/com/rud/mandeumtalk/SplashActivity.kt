@@ -4,12 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.rud.mandeumtalk.auth.IntroActivity
+import com.rud.mandeumtalk.intro.auth.IntroActivity
 
 class SplashActivity : AppCompatActivity() {
 

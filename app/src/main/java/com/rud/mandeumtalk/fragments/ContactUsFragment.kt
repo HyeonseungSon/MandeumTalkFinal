@@ -1,24 +1,39 @@
 package com.rud.mandeumtalk.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.rud.mandeumtalk.R
 import com.rud.mandeumtalk.databinding.FragmentContactusBinding
-import kotlinx.android.synthetic.main.activity_contents_show.*
-import kotlinx.android.synthetic.main.fragment_contactus.*
+import com.rud.mandeumtalk.main.contactus.*
+import retrofit2.Call
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ContactUsFragment : Fragment() {
 
-//	private lateinit var binding : FragmentContactusBinding
+	companion object {
+
+		// binding
+		lateinit var binding : FragmentContactusBinding
+
+		// Weather
+		private val retrofit = Retrofit.Builder()
+			.baseUrl("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/")
+			.addConverterFactory(GsonConverterFactory.create())
+			.build()
+
+		object ApiObject {
+			val retrofitService : WeatherInterface by lazy {
+				retrofit.create(WeatherInterface::class.java)
+			}
+		}
+	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -28,52 +43,93 @@ class ContactUsFragment : Fragment() {
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) : View? {
 
-//		binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contactus, container, false)
+		binding = FragmentContactusBinding.inflate(layoutInflater)
 
-		val view : View = inflater.inflate(R.layout.fragment_contactus, container, false)
+		// Weather
+		val call = ApiObject.retrofitService.GetWeather(data_type, num_of_rows, page_no, base_date, base_time, nx, ny)
+		call.enqueue(object : retrofit2.Callback<WeatherDataModel> {
+			override fun onResponse(call: Call<WeatherDataModel>, response: Response<WeatherDataModel>) {
+				if (response.isSuccessful == true) {
 
-		val webView : WebView = view.findViewById<WebView>(R.id.webView)
+					val skyValue : Int = response.body()!!.response.body.items.item[5].fcstValue.toInt()
+					val ptyValue : Int = response.body()!!.response.body.items.item[6].fcstValue.toInt()
 
-		webView.apply {
-			webViewClient = WebViewClient()
-			settings.javaScriptEnabled = true
-		}
-		webView.loadUrl("http://xn--ry1bx6g.kr/contact.php")
+					var skyString : String = ""
+					var ptyString : String = ""
+
+					Log.d("api", response.body()!!.response.body.items.item[5].category)
+					Log.d("api", skyValue.toString())
+					Log.d("api", response.body()!!.response.body.items.item[6].category)
+					Log.d("api", ptyValue.toString())
+
+					when (skyValue) {
+						1 -> {
+							skyString = "맑음"
+						}
+						3 -> {
+							skyString = "구름많음"
+						}
+						4 -> {
+							skyString = "흐림"
+						}
+					}
+
+					when (ptyValue) {
+						0-> {
+							ptyString = "없음"
+						}
+						1-> {
+							ptyString = "비"
+						}
+						2 -> {
+							ptyString = "비/눈"
+						}
+						3 -> {
+							ptyString = "눈"
+						}
+						4 -> {
+							ptyString = "소나기"
+						}
+					}
+
+					binding.weatherText.text = "하늘상태 : $skyValue\n강수형태 : $ptyValue\n하늘상태 : $skyString\n강수형태 : $ptyString"
+
+
+				}
+			}
+			override fun onFailure(call: Call<WeatherDataModel>, t: Throwable) {
+				Log.d("api fail : ", t.message.toString())
+			}
+		})
 
 		// Home Icon & Home Text
-		view.findViewById<ImageView>(R.id.homeIcon).setOnClickListener {
+		binding.homeIcon.setOnClickListener {
 			it.findNavController().navigate(R.id.action_boardFragment_to_guideFragment)
 		}
-		view.findViewById<TextView>(R.id.homeText).setOnClickListener {
+		binding.homeText.setOnClickListener {
 			it.findNavController().navigate(R.id.action_boardFragment_to_guideFragment)
 		}
 		// Portfolio Icon & Portfolio Text
-		view.findViewById<ImageView>(R.id.portfolioIcon).setOnClickListener {
+		binding.portfolioIcon.setOnClickListener {
 			it.findNavController().navigate(R.id.action_boardFragment_to_portfolioFragment)
 		}
-		view.findViewById<TextView>(R.id.portfolioText).setOnClickListener {
+		binding.portfolioText.setOnClickListener {
 			it.findNavController().navigate(R.id.action_boardFragment_to_portfolioFragment)
 		}
 		// Board Icon & Board Text
-		view.findViewById<ImageView>(R.id.boardIcon).setOnClickListener {
+		binding.boardIcon.setOnClickListener {
 			it.findNavController().navigate(R.id.action_boardFragment_to_homeFragment)
 		}
-		view.findViewById<TextView>(R.id.boardText).setOnClickListener {
+		binding.boardText.setOnClickListener {
 			it.findNavController().navigate(R.id.action_boardFragment_to_homeFragment)
 		}
-//		view.findViewById<ImageView>(R.id.contactUsIcon).setOnClickListener {
-//			it.findNavController().navigate(R.id.action_boardFragment_self)
-//		}
-//		view.findViewById<TextView>(R.id.contactUsText).setOnClickListener {
-//			it.findNavController().navigate(R.id.action_boardFragment_self)
-//		}
-		view.findViewById<ImageView>(R.id.accountIcon).setOnClickListener {
+		binding.accountIcon.setOnClickListener {
 			it.findNavController().navigate(R.id.action_boardFragment_to_accountFragment)
 		}
-		view.findViewById<TextView>(R.id.accountText).setOnClickListener {
+		binding.accountText.setOnClickListener {
 			it.findNavController().navigate(R.id.action_boardFragment_to_accountFragment)
 		}
 
-		return view
+		return binding.root
 	}
 }

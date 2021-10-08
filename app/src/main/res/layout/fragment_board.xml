@@ -10,10 +10,11 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
             <LinearLayout
-                android:id="@+id/linearLayout10"
+                android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -25,9 +26,9 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
-                    android:text="컨텐츠"
+                    android:text="게시판"
                     android:textColor="@color/mainPink"
-                    android:textSize="17sp"
+                    android:textSize="17dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -40,191 +41,36 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout11"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="5dp"
-                    android:weightSum="5">
-
-                    <ImageView
-                        android:id="@+id/educationIcon"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="5dp"
-                        android:src="@drawable/education" />
-
-                    <ImageView
-                        android:id="@+id/cookingIcon"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="5dp"
-                        android:src="@drawable/bowl" />
-
-                    <ImageView
-                        android:id="@+id/forestIcon"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="5dp"
-                        android:src="@drawable/forest" />
-
-                    <ImageView
-                        android:id="@+id/campingIcon"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="5dp"
-                        android:src="@drawable/camp" />
-
-                    <ImageView
-                        android:id="@+id/caravanIcon"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:padding="5dp"
-                        android:src="@drawable/caravan" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="5">
-
-                    <TextView
-                        android:id="@+id/educationText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Education"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/cookingText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Cooking"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/forestText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Forest"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/campingText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Camping"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/caravanText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Caravan"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/mainPink" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:visibility="visible"
-                android:id="@+id/contentsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/righthere" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@color/mainSkyBlue" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/together" />
-
-                        <ImageView
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/togethertext" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/address" />
-
-                    </LinearLayout>
-                </ScrollView>
-            </LinearLayout>
-
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/boardRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:background="@color/white"
-                android:visibility="invisible"
-                android:id="@+id/contentsListRV"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout11" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
-            <WebView
-                android:visibility="invisible"
-                android:id="@+id/contentFragmentWebView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <ImageView
+                android:id="@+id/boardWriteButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/writemainskyblue"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout11" />
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/boardWriteText"
+                android:visibility="invisible"
+                android:textColor="@color/mainPink"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
+                app:layout_constraintStart_toStartOf="@+id/boardWriteButton"
+                app:layout_constraintEnd_toEndOf="@+id/boardWriteButton"
+                android:text="글쓰기"
+                android:textSize="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout7"
@@ -237,18 +83,18 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/mainSkyBlue" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -277,7 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/schoolmainskyblue" />
+                    android:src="@drawable/schoolmainpink" />
 
                 <ImageView
                     android:id="@+id/portfolioIcon"
@@ -291,7 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/boardmainpink" />
+                    android:src="@drawable/boardmainskyblue" />
 
                 <ImageView
                     android:id="@+id/contactUsIcon"
@@ -324,8 +170,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="컨텐츠"
-                    android:textColor="@color/mainSkyBlue"
-                    android:textSize="13sp" />
+                    android:textColor="@color/mainPink"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/portfolioText"
@@ -335,7 +181,7 @@
                     android:gravity="center"
                     android:text="포트폴리오"
                     android:textColor="@color/mainPink"
-                    android:textSize="13sp" />
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/boardText"
@@ -344,8 +190,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="게시판"
-                    android:textColor="@color/mainPink"
-                    android:textSize="13sp" />
+                    android:textColor="@color/mainSkyBlue"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/contactUsText"
@@ -355,7 +201,7 @@
                     android:gravity="center"
                     android:text="문의"
                     android:textColor="@color/mainPink"
-                    android:textSize="13sp" />
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/accountText"
@@ -365,7 +211,7 @@
                     android:gravity="center"
                     android:text="나의 계정"
                     android:textColor="@color/mainPink"
-                    android:textSize="13sp" />
+                    android:textSize="13dp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

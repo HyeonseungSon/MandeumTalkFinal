@@ -24,7 +24,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.user.UserApiClient
 import com.rud.mandeumtalk.R
-import com.rud.mandeumtalk.auth.IntroActivity
+import com.rud.mandeumtalk.intro.auth.IntroActivity
 import com.rud.mandeumtalk.board.BoardModel
 import com.rud.mandeumtalk.board.HateListRVAdapter
 import com.rud.mandeumtalk.contentsList.BookmarkRVAdapter

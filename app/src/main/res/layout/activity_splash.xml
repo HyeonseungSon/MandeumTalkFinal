@@ -8,11 +8,11 @@
     tools:context=".SplashActivity">
 
     <TextView
-        android:layout_marginBottom="70dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginBottom="70dp"
         android:gravity="center"
-        android:text="만듦톡"
+        android:text="만듦톡 ver 1.1.5"
         android:textColor="@color/mainPink"
         android:textSize="27sp"
         app:layout_constraintBottom_toTopOf="@+id/loading_image" />

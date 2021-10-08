@@ -21,8 +21,6 @@ class BoardEditActivity : AppCompatActivity() {
 
     private val TAG = BoardEditActivity::class.java.simpleName
 
-    private lateinit var key : String
-
     private lateinit var writerUid : String
     private lateinit var writer : String
 
@@ -30,7 +28,7 @@ class BoardEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board_edit)
 
-        key = intent.getStringExtra("key").toString()
+        val key = intent.getStringExtra("key").toString()
 
         getBoardData(key)
         getImageData(key)
